@@ -1,0 +1,26 @@
+/ChatService/nbproject/private/
+/ChatService/dist/
+/ChatService/build/
+/IdentService/nbproject/private/
+/IdentService/dist/
+/IdentService/build/
+/MarketPlaceService/nbproject/private/
+/MarketPlaceService/dist/
+/MarketPlaceService/build/
+/KAA-JSP/nbproject/private/
+/KAA-JSP/dist/
+/KAA-JSP/build/
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#config file
+*.xml
+*.properties
