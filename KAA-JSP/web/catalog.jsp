@@ -263,7 +263,7 @@
                             out.print("<p>No product to be sold.</p>");
                         } else {
                             for (int i = 0; i < result.size(); i++) {
-                                out.print("<script>setInterval(function(){ getState('" + result.get(i).getUsername() + "','" + result.get(i).getProductId() + "'); }, 1000);</script>");
+                                out.print("<script>getState('" + result.get(i).getUsername() + "','" + result.get(i).getProductId() + "');</script>");
                                 out.print("<div id=\"status" + result.get(i).getUsername() + result.get(i).getProductId() +"\"></div>");
                                 out.print("<a href=\"\"><div ng-click=\"setReceiver('" + result.get(i).getUsername() + "')\"><p><b>" + result.get(i).getUsername() + "</a></b><br/></div>");
                                 out.print("added this on " + result.get(i).getDate().getDate() + "</p>");
