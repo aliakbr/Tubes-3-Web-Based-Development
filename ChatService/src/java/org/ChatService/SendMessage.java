@@ -49,7 +49,7 @@ public class SendMessage extends HttpServlet {
                 String sql;
                 String username = request.getParameter("username");
                 String usernamereceiver = request.getParameter("usernamereceiver");
-                String message = request.getParameter("message");
+                String message = request.getParameter("text");
                 sql = "SELECT * FROM chattoken WHERE username=\""+usernamereceiver+"\";";
                 ResultSet rs = stmt.executeQuery(sql);
                 if(rs.next()){
@@ -66,7 +66,7 @@ public class SendMessage extends HttpServlet {
                     json.put("to", chattoken);
                     json1.put("name",username);
                     json1.put("to",usernamereceiver);
-                    json1.put("message",message);
+                    json1.put("text",message);
                     json.put("data",json1);
                     System.out.println("Masuk sini "+json.toString());
                     String url = "https://fcm.googleapis.com/fcm/send";

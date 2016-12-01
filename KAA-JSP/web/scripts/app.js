@@ -31,7 +31,7 @@ app.controller('chatController', ['$scope','$http','Message', function($scope,$h
     $scope.messages= Message.all;
     
     $scope.insert = function(message){
-        //Message.create(message);
+        Message.create(message);
     };  
     
     $scope.setUser = function(username){
@@ -55,7 +55,7 @@ app.controller('chatController', ['$scope','$http','Message', function($scope,$h
         var paramSend = {
             username: $scope.user,
             usernamereceiver: $scope.receiver,
-            message: newmessage
+            text: newmessage
         };
         
        console.log("mau ngirim");
@@ -84,7 +84,7 @@ app.controller('chatController', ['$scope','$http','Message', function($scope,$h
     };
     firebase.initializeApp(config);
           
-    messaging = firebase.messaging();
+    const messaging = firebase.messaging();
     messaging.requestPermission()
       .then(function() {
         console.log('Notification permission granted.');
@@ -101,8 +101,8 @@ app.controller('chatController', ['$scope','$http','Message', function($scope,$h
       });
       
     messaging.onMessage(function(payload) {
-        console.log("Message received. ", payload);
-        $scope.messages.create(payload);
+        console.log("Message received. ", payload.data);
+        Message.create(payload.data);
         // ...
     });
 }]);
