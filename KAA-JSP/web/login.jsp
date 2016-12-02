@@ -19,7 +19,7 @@
                 String user = request.getParameter("username");
                 String pass = request.getParameter("password");
                 String userAgent = request.getHeader("user-agent");
-                String userIP = GetIP.getClientIpAddress(request);
+                String userIP = GetIP.getClientIpAddress1(request);
                 String urlParameter = "username=" + user + "&password=" + pass +
                         "&user_agent=" + userAgent + "&ip=" + userIP;
                 String urlRequest = "http://localhost:8080/IdentService/login?";
