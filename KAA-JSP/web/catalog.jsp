@@ -76,7 +76,7 @@
                         String tokenIP = tokenParser.parseIP(user_token);
                         System.out.println(tokenBrowser+" "+tokenIP);
                         String useragent = request.getHeader("user-agent");
-                        String userIP = GetIP.getClientIpAddress(request);
+                        String userIP = GetIP.getClientIpAddress1(request);
                         System.out.println(useragent+" "+ userIP);
                         if (!tokenBrowser.equals(useragent) || !tokenIP.equals(userIP)){
                             String ParameterURL1 = "token=" + user_token;
@@ -124,7 +124,6 @@
                                         + "jsp?token=" + user_token + "&message=error");
                             }
                         }
-
                         if ((request.getParameter("logout") == null)
                                 && (request.getParameter("token") != null)) {
                             /* Consume REST API */
@@ -144,7 +143,7 @@
                                 response.sendRedirect("http://localhost:8080/KAA-JSP/catalog."
                                         + "jsp?token=" + user_token);
                             }
-                        } /* Logout */ else if ((request.getParameter("logout") != null)
+                        } else if ((request.getParameter("logout") != null)
                                 && (request.getParameter("token") != null)) {
                             URL obj1 = null;
                             try {
@@ -168,14 +167,12 @@
                                 e.printStackTrace();
                             }
                         }
-
-
                     %>
                 </span>
 
                 </br>
                 <a href="
-                   <%                String logoutURL = "http://localhost:8080/KAA-JSP/catalog.jsp?token=" + user_token + "&logout=on";
+                   <%  String logoutURL = "http://localhost:8080/KAA-JSP/catalog.jsp?token=" + user_token + "&logout=on";
                        out.println(logoutURL);
                    %>
                    " class="logout"><span class="link">Logout</span>
@@ -379,36 +376,9 @@
                     <button ng-click="sendMessage(newmessage);">Send</button>
                 </div>
             </div>
-
-            <!--        <div ng-app="chatApp" ng-controller="chatController">
-                        <p>Name: <input type="text" ng-model="newmessage.user"></p>
-                        <p>Message: <input type="text" ng-model="newmessage.text"></p>
-                        <button ng-click="insert(newmessage)">Send</button>
-                    
-                        <ul>
-                            <li ng-repeat="message in messages">
-                                {{message.user}} send: {{message.text}}
-                            </li>
-                        </ul>
-                    </div> -->
-
-
-            <!--        <div ng-app="chatApp" ng-controller="chatController">
-                        <p>Name: <input type="text" ng-model="newmessage.user"></p>
-                        <p>Message: <input type="text" ng-model="newmessage.text"></p>
-                        <button ng-click="insert(newmessage)">Send</button>
-                    
-                        <ul>
-                            <li ng-repeat="message in messages">
-                                {{message.user}} send: {{message.text}}
-                            </li>
-                        </ul>
-                    </div> -->
-
-
             <script>
-                /*document.getElementById("catalog").style.background="#0066ff";
-                 document.getElementById("catalog").style.color="#ffffff";*/
+                document.getElementById("catalog").style.background="#0066ff";
+                 document.getElementById("catalog").style.color="#ffffff";
             </script>
     </body>
 </html>
