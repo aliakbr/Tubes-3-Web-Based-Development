@@ -175,7 +175,7 @@
 
                 </br>
                 <a href="
-                   <%                String logoutURL = "http://localhost:8080/KAA-JSP/catalog.jsp?token=" + user_token + "&logout=on";
+                   <%  String logoutURL = "http://localhost:8080/KAA-JSP/catalog.jsp?token=" + user_token + "&logout=on";
                        out.println(logoutURL);
                    %>
                    " class="logout"><span class="link">Logout</span>
@@ -407,8 +407,8 @@
 
 
             <script>
-                /*document.getElementById("catalog").style.background="#0066ff";
-                 document.getElementById("catalog").style.color="#ffffff";*/
+                document.getElementById("catalog").style.background="#0066ff";
+                 document.getElementById("catalog").style.color="#ffffff";
             </script>
     </body>
 </html>

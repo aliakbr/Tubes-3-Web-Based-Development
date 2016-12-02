@@ -55,19 +55,15 @@ public class SendMessage extends HttpServlet {
                 if(rs.next()){
                     JSONObject json = new JSONObject();
                     JSONObject json1 = new JSONObject();
+                    JSONObject json2 = new JSONObject();
                     String chattoken = rs.getString("chattoken");
-                    /* Format json
-                    {data : {
-                        username : xx
-                        message : xx
-                    },
-                    to : xx 
-                    }*/
                     json.put("to", chattoken);
-                    json1.put("name",username);
-                    json1.put("to",usernamereceiver);
-                    json1.put("text",message);
-                    json.put("data",json1);
+                    json2.put("name",username);
+                    json2.put("to",usernamereceiver);
+                    json2.put("text",message);
+                    json1.put("title",usernamereceiver);
+                    json1.put("body",json2);
+                    json.put("notification",json1);
                     System.out.println("Masuk sini "+json.toString());
                     String url = "https://fcm.googleapis.com/fcm/send";
                     URL obj = new URL(url);

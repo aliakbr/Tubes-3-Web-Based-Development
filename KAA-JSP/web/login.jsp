@@ -151,9 +151,6 @@
                     .then(function () {
                         console.log('Notification permission granted.');
                         return messaging.getToken();
-                        // TODO(developer): Retrieve an Instance ID token for use with FCM.
-                        // ...
-
                     })
                     .then(function (token) {
                         document.getElementById("chattoken").value = token;
@@ -163,15 +160,14 @@
                         console.log('Unable to get permission to notify.', err);
                     });
 
-            
-              var chattoken= messaging.getToken();
-              
-                console.log(chattoken);
-              
-              var getChatToken=function(){  
+            messaging.onMessage(function(payload) {
+                console.log("Message received. ", payload.notification);
+               });
+            var chattoken= messaging.getToken();              
+            var getChatToken=function(){  
                 console.log(chattoken); 
                 document.getElementById("chattoken").value = chattoken; 
-               };
+            };
         </script>
     </body>
 </html>

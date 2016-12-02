@@ -25,7 +25,8 @@ app.controller('chatController', ['$scope','$http','Message', function($scope,$h
     name = document.getElementById("usernameangular").dataset.user;
     console.log(name);
     $scope.user = name;
-    
+    $scope.data;
+    $scope.status;
     $scope.receiver = "";
     
     $scope.messages= Message.all;
@@ -64,14 +65,11 @@ app.controller('chatController', ['$scope','$http','Message', function($scope,$h
         $http({method: "GET", url: "http://localhost:8080/ChatService/SendMessage", params: paramSend}).
         then(function(response) {
           console.log("harusnya berhasil");
-
-          $scope.status = response.status;
-          $scope.data = response.data;
-        }, function(response) {
-          $scope.data = response.data || 'Request failed';
-          $scope.status = response.status;
-        });
-          console.log("berhasil keluar");
+          console.log("Response",response);
+        }).catch(function(err) {
+            console.log('Unable to get permission to notify.', err);
+          });
+        console.log("berhasil keluar");
         
     };
     
@@ -84,7 +82,7 @@ app.controller('chatController', ['$scope','$http','Message', function($scope,$h
     };
     firebase.initializeApp(config);
           
-    const messaging = firebase.messaging();
+    messaging = firebase.messaging();
     messaging.requestPermission()
       .then(function() {
         console.log('Notification permission granted.');
@@ -101,9 +99,8 @@ app.controller('chatController', ['$scope','$http','Message', function($scope,$h
       });
       
     messaging.onMessage(function(payload) {
-        console.log("Message received. ", payload.data);
-        Message.create(payload.data);
-        // ...
+        console.log("Message received. ", payload.notification.body);
+        Message.create(payload.notification.body);
     });
 }]);
 
@@ -135,34 +132,3 @@ app.factory('Message', function() {
     return Message;
 
 });
-
-/*app.factory('Message', function() {
-//    var ref= new Firebase('https://kaa-saleproject.firebaseio.com');
- 
-/*    var messages = $firebase(ref.child('messages')).$asArray();
-/*   var messages = [{'name':'Pippo','text':'Hello'},
-        {'name':'Pluto','text':'Hello'},
-        {'name':'Pippo','text':'how are you ?'},
-        {'name':'Pluto','text':'fine thanks'},
-        {'name':'Pippo','text':'Bye'},
-        {'name':'Pluto','text':'Bye'}];*/
-
-/*    var Message = {
-        all : messages,
-        create: function(message){
-//            return messages.$add(message);
-        },
-/*        get: function(messageId){
-            return $firebase(ref.child('messages').child(messageId)).$asObject();
-        },*/
-/*        delete: function(message){
-            return messages.$remove(message);
-        }
-    };
-/*    var Message = {
-        all: messages
-    };*/
-
-//    return Message;
-
-//});
