@@ -85,6 +85,8 @@ app.controller('chatController', ['$scope','$http','Message', function($scope,$h
     firebase.initializeApp(config);
           
     const messaging = firebase.messaging();
+    
+    
     messaging.requestPermission()
       .then(function() {
         console.log('Notification permission granted.');
